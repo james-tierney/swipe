@@ -32,7 +32,7 @@
     ],
     "rules": {
       "no-unused-vars": "warn",
-      "noEmitOnErrors": true
+      "noEmitOnErrors": 1
     }
   },
   "browserslist": {
