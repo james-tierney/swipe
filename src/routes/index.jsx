@@ -1,0 +1,89 @@
+import { createBrowserRouter } from "react-router-dom";
+import AppLayout from "../components/layout/AppLayout";
+import LoginPage from "../pages/LoginPage";
+import MainLayout from "../components/layout/MainLayout";
+import DashboardPage from "../pages/DashboardPage";
+import SearchPage from "../pages/SearchPage";
+import LandingPage from "../pages/LandingPage";
+import SimpleDashBoardPage from "../pages/SimpleDashBoardPage";
+import ConnectAccountPage from "../pages/ConnectAccountPage";
+import InitialScreen from "../pages/InitialScreen";
+import { Login } from "@mui/icons-material";
+
+
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        index: true,
+        element: <LandingPage />
+      },
+            {
+        path: "home",
+        element: <AppLayout />,
+        children: [
+          {
+            index: true,
+            element: <LandingPage />
+          },
+        ]
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+        children: [
+          {
+            index: true,
+            element: <LoginPage/>
+          },
+        ]
+      },
+      {
+        path: "dashboard",
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <SimpleDashBoardPage />
+          },
+        ]
+      },
+
+      {
+      path: "about",
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <InitialScreen />
+          },
+        ]
+      },
+
+            {
+        path: "connectAccount",
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <ConnectAccountPage />
+          },
+        ]
+      },
+
+      {
+        path: "search",
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <SearchPage/>
+          }
+        ]
+      }
+    ]
+  }
+]);
