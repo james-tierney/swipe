@@ -45,6 +45,6 @@ export default function TestPage() {
   return message ? (
     <Message message={message} />
   ) : (
-    <ProductDisplay />
+    <ProductDisplay /> // hi
   );
 }
