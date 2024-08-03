@@ -8,9 +8,9 @@ import LandingPage from "../pages/LandingPage";
 import SimpleDashBoardPage from "../pages/SimpleDashBoardPage";
 import ConnectAccountPage from "../pages/ConnectAccountPage";
 import InitialScreen from "../pages/InitialScreen";
+import TestPage from '../pages/TestPage'; // Adjust the path if necessary
+
 import { Login } from "@mui/icons-material";
-
-
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
         index: true,
         element: <LandingPage />
       },
-            {
+      {
         path: "home",
         element: <AppLayout />,
         children: [
@@ -51,9 +51,8 @@ export const router = createBrowserRouter([
           },
         ]
       },
-
       {
-      path: "about",
+        path: "about",
         element: <MainLayout />,
         children: [
           {
@@ -62,8 +61,7 @@ export const router = createBrowserRouter([
           },
         ]
       },
-
-            {
+      {
         path: "connectAccount",
         element: <MainLayout />,
         children: [
@@ -73,7 +71,6 @@ export const router = createBrowserRouter([
           },
         ]
       },
-
       {
         path: "search",
         element: <MainLayout />,
@@ -81,6 +78,16 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <SearchPage/>
+          }
+        ]
+      },
+      {
+        path: "test-page",
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <TestPage />
           }
         ]
       }

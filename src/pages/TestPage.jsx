@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "../App.css"; // Adjust the path to your CSS file if necessary
 
 const ProductDisplay = () => (
   <section>
