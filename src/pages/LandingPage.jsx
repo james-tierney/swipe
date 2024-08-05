@@ -1,10 +1,37 @@
 import React from 'react';
 import { Grid, Button, Typography, Container, TextField } from '@mui/material';
+import { loadStripe } from '@stripe/stripe-js';
 import SwipeMateImage from '../assets/images/phoneImageOfApp.png';
 import Screenshot1 from '../assets/images/screenshot1.png';
 import Screenshot2 from '../assets/images/screenshot2.png';
 
+// Load your publishable key from Stripe
+const stripePromise = loadStripe('pk_test_51PkAarGzjfg0H4MP27P2GgjTLasVJ5NthkZnAQOXgDiEasley2S7r6b7qMiF6q9kRyCBFObDQkIDUCBj46Aq6Q9S00oq96QXZX');
+
 const LandingPage = () => {
+  const handlePayNow = async () => {
+    const stripe = await stripePromise;
+
+    // Call your backend to create the Checkout session
+    const response = await fetch('/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const session = await response.json();
+
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.error(result.error.message);
+    }
+  };
+
   return (
     <div style={{ backgroundColor: '#ED1504', minHeight: '100vh', fontFamily: 'Bebas Neue' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '16px', alignItems: 'center', marginRight: 'auto', marginLeft: '20%', gap: '16px', fontFamily: 'Bebas Neue' }}>
@@ -15,7 +42,6 @@ const LandingPage = () => {
 
       <Container style={{ paddingTop: '16px', paddingBottom: '16px', fontFamily: 'Bebas Neue' }}>
         <Grid container spacing={3}>
-          {/* Left side with h2 heading */}
           <Grid item xs={12} md={6}>
             <Grid container direction="column" alignItems="center" justifyContent="center" height="100%">
               <Grid item>
@@ -26,13 +52,11 @@ const LandingPage = () => {
             </Grid>
           </Grid>
 
-          {/* Right side with image */}
           <Grid item xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', marginTop: '20px', fontFamily: 'Bebas Neue' }}>
             <img src={SwipeMateImage} alt="Swipe Mate" style={{ width: '100%', maxHeight: '80vh', objectFit: 'contain' }} />
           </Grid>
         </Grid>
 
-        {/* AI Model Training Info Section */}
         <Grid container spacing={3} style={{ marginTop: '40px' }}>
           <Grid item xs={12}>
             <Typography variant="h5" component="h5" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '2rem', fontFamily: 'Bebas Neue' }}>
@@ -41,11 +65,10 @@ const LandingPage = () => {
           </Grid>
         </Grid>
 
-        {/* Instruction Images */}
         <Grid container spacing={3} style={{ marginTop: '40px' }}>
           <Grid item xs={12}>
             <Typography variant="h4" component="h4" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '2rem', fontFamily: 'Bebas Neue' }}>
-              1. Log into the tinder wep app. Left click and select inspect element
+              1. Log into the tinder web app. Left click and select inspect element
             </Typography>
             <img src={Screenshot1} alt="Inspect Element" style={{ width: '100%', objectFit: 'contain', marginTop: '20px' }} />
           </Grid>
@@ -64,7 +87,6 @@ const LandingPage = () => {
           </Grid>
         </Grid>
 
-        {/* Payment Section */}
         <Grid container spacing={3} style={{ marginTop: '40px', marginBottom: '40px' }}>
           <Grid item xs={12}>
             <Typography variant="h4" component="h4" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '2rem', fontFamily: 'Bebas Neue' }}>
@@ -85,7 +107,13 @@ const LandingPage = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Button variant="contained" color="primary" fullWidth style={{ backgroundColor: '#FFFFFF', color: '#ED1504', fontFamily: 'Bebas Neue' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              style={{ backgroundColor: '#FFFFFF', color: '#ED1504', fontFamily: 'Bebas Neue' }}
+              onClick={handlePayNow}
+            >
               Pay Now
             </Button>
           </Grid>

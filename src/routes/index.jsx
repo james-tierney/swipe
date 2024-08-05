@@ -9,6 +9,7 @@ import SimpleDashBoardPage from "../pages/SimpleDashBoardPage";
 import ConnectAccountPage from "../pages/ConnectAccountPage";
 import InitialScreen from "../pages/InitialScreen";
 import TestPage from '../pages/TestPage'; // Adjust the path if necessary
+import CheckoutSuccess from "../pages/CheckoutSuccess";
 
 import { Login } from "@mui/icons-material";
 
@@ -88,6 +89,16 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <TestPage />
+          }
+        ]
+      },
+            {
+        path: "checkout-success",
+        element: <MainLayout />,
+        children: [
+          {
+            index: true,
+            element: <CheckoutSuccess />
           }
         ]
       }
