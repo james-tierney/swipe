@@ -98,14 +98,6 @@ const LandingPage = () => {
             <TextField fullWidth variant="outlined" label="Auth Token" />
           </Grid>
 
-          <Grid item xs={12} md={6}>
-            <TextField fullWidth variant="outlined" label="Credit Card" />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <TextField fullWidth variant="outlined" label="PayPal" />
-          </Grid>
-
           <Grid item xs={12}>
             <Button
               variant="contained"
