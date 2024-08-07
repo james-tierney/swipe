@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Button, Typography, Container, TextField } from '@mui/material';
 import { loadStripe } from '@stripe/stripe-js';
 import SwipeMateImage from '../assets/images/phoneImageOfApp.png';
@@ -9,6 +9,8 @@ import Screenshot2 from '../assets/images/screenshot2.png';
 const stripePromise = loadStripe('pk_test_51PkAarGzjfg0H4MP27P2GgjTLasVJ5NthkZnAQOXgDiEasley2S7r6b7qMiF6q9kRyCBFObDQkIDUCBj46Aq6Q9S00oq96QXZX');
 
 const LandingPage = () => {
+  const [authToken, setAuthToken] = useState('');
+
   const handlePayNow = async () => {
     const stripe = await stripePromise;
 
@@ -18,6 +20,7 @@ const LandingPage = () => {
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ authToken }),  // Include auth token in the request
     });
 
     const session = await response.json();
@@ -95,7 +98,13 @@ const LandingPage = () => {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <TextField fullWidth variant="outlined" label="Auth Token" />
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Auth Token"
+              value={authToken}
+              onChange={(e) => setAuthToken(e.target.value)}
+            />
           </Grid>
 
           <Grid item xs={12}>
@@ -103,8 +112,13 @@ const LandingPage = () => {
               variant="contained"
               color="primary"
               fullWidth
-              style={{ backgroundColor: '#FFFFFF', color: '#ED1504', fontFamily: 'Bebas Neue' }}
+              style={{
+                backgroundColor: authToken ? '#FFFFFF' : 'gray',
+                color: '#ED1504',
+                fontFamily: 'Bebas Neue',
+              }}
               onClick={handlePayNow}
+              disabled={!authToken}
             >
               Pay Now
             </Button>
