@@ -49,14 +49,10 @@ const LandingPage = () => {
             <Grid container direction="column" alignItems="center" justifyContent="center" height="100%">
               <Grid item>
                 <Typography variant="h2" component="h2" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '4.5rem', fontFamily: 'Bebas Neue' }}>
-                  Let AI swipe your Tinder! Go from Simping to Pimping in 3 easy steps
+                  Let AI swipe your Tinder! Go from single to in-demand in 3 easy steps
                 </Typography>
               </Grid>
             </Grid>
-          </Grid>
-
-          <Grid item xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', marginTop: '20px', fontFamily: 'Bebas Neue' }}>
-            <img src={SwipeMateImage} alt="Swipe Mate" style={{ width: '100%', maxHeight: '80vh', objectFit: 'contain' }} />
           </Grid>
         </Grid>
 
