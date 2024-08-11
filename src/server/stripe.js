@@ -1,6 +1,6 @@
 const express = require("express");
 const stripe = require("stripe")(
-  "sk_test_51PkAarGzjfg0H4MPKAxe6PdEhy50yHOHxzq5MZfWShUTgalSlxslBBdOkbly8rJkoLfiFFDfRiLew558BngVDhSG003LNIE1BR"
+  "sk_test_51MIxt5KhH8zNT0eB8iLQwqDCpcFhhjQJhUHhc7YF99YfdgsfZ58FayYJwPTvtTokk195NMPVEpZ3rk56CsfrbzBi00SBkjyRrE"
 );
 const cors = require("cors");
 const app = express();
@@ -18,9 +18,9 @@ app.post("/create-checkout-session", async (req, res) => {
           price_data: {
             currency: "usd",
             product_data: {
-              name: "500 Swipes",
+              name: "SwipeMateAI",
             },
-            unit_amount: 10000,
+            unit_amount: 2000,
           },
           quantity: 1,
         },
