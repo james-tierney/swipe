@@ -24,6 +24,7 @@ const LandingPage = () => {
     });
 
     const session = await response.json();
+    console.log(session);
 
     // Redirect to Stripe Checkout
     const result = await stripe.redirectToCheckout({
@@ -81,7 +82,7 @@ const LandingPage = () => {
 
           <Grid item xs={12}>
             <Typography variant="h4" component="h4" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '2rem', fontFamily: 'Bebas Neue' }}>
-              3. Paste your auth token and get 150 free swipes (or until Tinder requires you to upgrade your account)!
+              3. Paste your auth token and get 500 right swipes (or until Tinder requires you to upgrade your account)!
             </Typography>
           </Grid>
         </Grid>
@@ -89,7 +90,7 @@ const LandingPage = () => {
         <Grid container spacing={3} style={{ marginTop: '40px', marginBottom: '40px' }}>
           <Grid item xs={12}>
             <Typography variant="h4" component="h4" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '2rem', fontFamily: 'Bebas Neue' }}>
-              Paste your auth token and pay $100 for 500 free swipes!
+              Paste your auth token and pay only $200 for 500 right swipes!
             </Typography>
           </Grid>
 
@@ -110,13 +111,13 @@ const LandingPage = () => {
               fullWidth
               style={{
                 backgroundColor: authToken ? '#FFFFFF' : 'gray',
-                color: '#ED1504',
+                color: authToken ? '#ED1504' : 'white',
                 fontFamily: 'Bebas Neue',
               }}
               onClick={handlePayNow}
               disabled={!authToken}
             >
-              Pay Now
+              Pay Now (secured through stripe)
             </Button>
           </Grid>
         </Grid>

@@ -25,6 +25,7 @@ app.post("/create-checkout-session", async (req, res) => {
           quantity: 1,
         },
       ],
+      automatic_tax: {enabled: true},
       mode: "payment",
       success_url: "http://localhost:3000/checkout-success",
       cancel_url: "https://your-website.com/cancel",
