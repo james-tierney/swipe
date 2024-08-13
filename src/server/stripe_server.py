@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Set your secret key. Remember to replace this with your actual secret key.
 stripe.api_key = "sk_test_51MIxt5KhH8zNT0eB8iLQwqDCpcFhhjQJhUHhc7YF99YfdgsfZ58FayYJwPTvtTokk195NMPVEpZ3rk56CsfrbzBi00SBkjyRrE"
-webhook_endpoint_secret = 'whsec_d173c96a2a07161125d6bb88139fb7389fa30baa556188dbe7243df0cc25f069'
+webhook_endpoint_secret = 'whsec_LG3tvZ1TnYUc9MpF2f9HFPR0n0Z94uOu'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
