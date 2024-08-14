@@ -82,7 +82,7 @@ const LandingPage = () => {
 
           <Grid item xs={12}>
             <Typography variant="h4" component="h4" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '2rem', fontFamily: 'Bebas Neue' }}>
-              3. Paste your auth token and get 500 right swipes (or until Tinder requires you to upgrade your account)!
+              3. Paste your auth token and get 150 free swipes (or until Tinder requires you to upgrade your account)!
             </Typography>
           </Grid>
         </Grid>
@@ -90,7 +90,7 @@ const LandingPage = () => {
         <Grid container spacing={3} style={{ marginTop: '40px', marginBottom: '40px' }}>
           <Grid item xs={12}>
             <Typography variant="h4" component="h4" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '2rem', fontFamily: 'Bebas Neue' }}>
-              Paste your auth token and pay only $200 for 500 right swipes!
+              Paste your auth token and pay $100 for 500 free swipes!
             </Typography>
           </Grid>
 
@@ -117,7 +117,7 @@ const LandingPage = () => {
               onClick={handlePayNow}
               disabled={!authToken}
             >
-              Pay Now (secured through stripe)
+              Pay Now (secured through Stripe)
             </Button>
           </Grid>
         </Grid>

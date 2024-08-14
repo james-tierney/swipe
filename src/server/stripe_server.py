@@ -1,6 +1,8 @@
+import os
 from flask import Flask, request, jsonify
 import stripe
 import subprocess  # Add this import
+import json
 
 app = Flask(__name__)
 
@@ -10,6 +12,9 @@ webhook_endpoint_secret = 'whsec_LG3tvZ1TnYUc9MpF2f9HFPR0n0Z94uOu'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
+    data = json.loads(request.data)
+    auth_token = data.get('authToken')
+
     try:
         # Create a new checkout session
         session = stripe.checkout.Session.create(
@@ -28,7 +33,8 @@ def create_checkout_session():
             ],
             automatic_tax={'enabled': True},
             mode='payment',
-            success_url='http://localhost:3000/checkout-success',
+            client_reference_id=auth_token,  # Set the auth token here
+            success_url=f'http://localhost:3000/checkout-success?authToken={auth_token}',
             cancel_url='https://your-website.com/cancel',
         )
         print(f"Created Stripe Checkout Session: {session.id}")
@@ -59,10 +65,16 @@ def webhook():
     # Handle the event
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
-        print('Payment was successful!')
-        # Call your Tinder script here
-        # subprocess.run(["python3", "/path/to/your_script.py"])  # Adjust this path to your actual script
-        print("Now we can run the tinder scripts")
+        auth_token = session.get('client_reference_id')  # Fetch the auth token
+        
+        if auth_token:
+            # Run Tinder script with the relative path and auth token
+            print('Payment was successful! Now we can run the Tinder scripts')
+            subprocess.run(["python3", "./src/tinder/tinder_script2.py", auth_token])
+        else:
+            print("No Auth Token")
+        
+        
     else:
         print(f'Unhandled event type {event["type"]}')
 
