@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "swift-park-378200",
+  "private_key_id": "6cf2c2ee1a2f75571d2de516351d4a61e32e6892",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCGog5Idrt3CI58\nASY0LKOZTUoy1Ivo4z7rqsz/DJQIESBu89skNQSPqSw+DdRXiX7sCHV+hbqzyapV\nw9rdYIt53Eop16DDOWZZLtCJaJ2SV9VMTauUiz4PBUJ8atwhSxzkvh34K0ZtHdof\nfatfbPHM0JP3p+fCLafP2swcAZXdE7FS77GpoUA7fgjUh+7mZuS9jJut1xcVgyPH\nkp6EphUa9iOgTB1gV752eX+5CneZzODc3oxo5jXPcYIxbFxxYKyojOjRC7BWIPEs\nOzYsCjHUnf/b6sv5Z9fekSGGvlUSFYq8c1T+vljgbO+p42aS2/w5b9DXgr6DwRSl\n+AEOyhlXAgMBAAECggEADjyAqiTz+chL2Mz+TzIRMpq7p9hV2xB8jMsI1kdsN9Yn\nydO7bn60tsQ6y20G8SK26xqR4gkeDvjaLCuDrzkQRpiGtxn4A+zD59ZNcto/H0Ru\nZ50m8ZQvwcLanvFlyZd5vK5l2OIqlks7z2yofHS2tOOxYdS9awkM36vRPXzlbfUJ\n2+vMyCF3X+l9XC8/2cDfcw8RxCGYiaTKuRJvchS5RhfhBGyJ3r2S9qosX2r2G2Q6\nJrN45vhQlzBxeqLqTPJAmtztomd1UB556QqSXX7atlQmlUr5w3h2MP/6d/l9PlQz\nlYOkW8rqQuDRG2ChTklHNEOMMP3qZoG786ZGNDDCIQKBgQC9ayMtiMIsqezhbf3R\nvzBP2xQjbHA6tAvUtMuaCVgd5PblB1HRjQcVghKLjmkxFkK2VdSfy5NxiErSAGGj\n3vQr5D6vuukTruE0PqkxgaNaeGprnHJ2+89oh+avmJxXb2MAEg/sV9rmUY5WJVCL\nWPrlEUEdsy8ud3FNSZmdTLyETwKBgQC19QlLdrZ1tNm7i5sID1Kct/guQWzk+qXE\nVB6yKI0CtM8uL0T6zctjbFgQszAbNMT+KgkgULynxyZeN4dmDR7xneeCU+8Nj2Sa\nl0I/eRPdTQYbsY9FKdedwZD5uflPk7hOwg8dUECJUj8p4B9tjUUlIzRfMUBzJQ6Z\nIjcp9yNweQKBgFtNl0lNkHtC9UG8aQp/Y+Q6L7zbekVxn/pJo5J+SpEuWqwPGSsv\nFWkSp6nJXX8hwcpuGO1ljY6+KYKMWIRK5dt6S5UdPVgVhcxPH/MTEBB91p5EbRBZ\nVKKIT3P41fN3Z3sTOcWsm4FFcpyno+lnXJip9n9Abc+yF1Uv0vH1mTEVAoGAMLqJ\nnbMSFB21vbsabqMj3aKLDWAqGHxjjlt0yQOBF/tyDI1OLNiWIm8uenJybKbKJsL9\nJLFahJgZ11uJoDPdWJmQGV//AiOnrprZfAQh5L8u5pW7p6sX+kCPYcGDWeNWlYj0\n4UXPsrbbAYzq/by6isKN0PxwpSWEblAyc8OiswkCgYB7vlhysdycfZVuWjd9RQ9E\nHGlGDBtNbVdAgIZ8s0jKofvjbFsA5JAAgHC4n0cZgAMohNrsa5GlUyZkAftBa3y2\nVhwemL++i6i6BsAm3wMGGPXRvSdCdsm97CG2vaAazurQvjYCZ9rMFRdufdSvuTg6\n2UbMwVKr/Hmq0eAqbCqYSA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "swipemateai@swift-park-378200.iam.gserviceaccount.com",
+  "client_id": "118384740125890735280",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/swipemateai%40swift-park-378200.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

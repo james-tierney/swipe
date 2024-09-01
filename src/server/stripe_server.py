@@ -10,6 +10,9 @@ app = Flask(__name__)
 stripe.api_key = "sk_test_51MIxt5KhH8zNT0eB8iLQwqDCpcFhhjQJhUHhc7YF99YfdgsfZ58FayYJwPTvtTokk195NMPVEpZ3rk56CsfrbzBi00SBkjyRrE"
 webhook_endpoint_secret = 'whsec_LG3tvZ1TnYUc9MpF2f9HFPR0n0Z94uOu'
 
+# Determine the base directory of the script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     data = json.loads(request.data)
@@ -68,9 +71,17 @@ def webhook():
         auth_token = session.get('client_reference_id')  # Fetch the auth token
         
         if auth_token:
-            # Run Tinder script with the relative path and auth token
+            # Construct the relative path to the Tinder script
+            tinder_script_path = os.path.join(BASE_DIR, '../tinder/tinder_script2.py')
+            print(f"Tinder script path: {tinder_script_path}")
+
+            # Normalize the path (optional, for cross-platform compatibility)
+            tinder_script_path = os.path.normpath(tinder_script_path)
+            print(f"Normalised tinder script path: {tinder_script_path}")
+
+            # Run Tinder script with the constructed relative path and auth token
             print('Payment was successful! Now we can run the Tinder scripts')
-            subprocess.run(["python3", "./src/tinder/tinder_script2.py", auth_token])
+            subprocess.run(["python3", tinder_script_path, auth_token])
         else:
             print("No Auth Token")
         
