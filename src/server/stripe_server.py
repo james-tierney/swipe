@@ -7,8 +7,8 @@ import json
 app = Flask(__name__)
 
 # Set your secret key. Remember to replace this with your actual secret key.
-stripe.api_key = "sk_test_51MIxt5KhH8zNT0eB8iLQwqDCpcFhhjQJhUHhc7YF99YfdgsfZ58FayYJwPTvtTokk195NMPVEpZ3rk56CsfrbzBi00SBkjyRrE"
-webhook_endpoint_secret = 'whsec_LG3tvZ1TnYUc9MpF2f9HFPR0n0Z94uOu'
+stripe.api_key = "sk_test_51PkAarGzjfg0H4MPKAxe6PdEhy50yHOHxzq5MZfWShUTgalSlxslBBdOkbly8rJkoLfiFFDfRiLew558BngVDhSG003LNIE1BR"
+webhook_endpoint_secret = 'whsec_PNlmJOTPrG7gbIfrStvZ5clmcIaGTcfp'
 
 # Determine the base directory of the script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -25,16 +25,16 @@ def create_checkout_session():
             line_items=[
                 {
                     'price_data': {
-                        'currency': 'usd',
+                        'currency': 'gbp',
                         'product_data': {
-                            'name': 'SwipeMateAI',
+                            'name': 'test',
                         },
-                        'unit_amount': 2000,  # Amount in cents
+                        'unit_amount': 100,  # Amount in cents
                     },
                     'quantity': 1,
                 },
             ],
-            automatic_tax={'enabled': True},
+            #automatic_tax={'enabled': True},
             mode='payment',
             client_reference_id=auth_token,  # Set the auth token here
             success_url=f'http://localhost:3000/checkout-success?authToken={auth_token}',
@@ -48,6 +48,7 @@ def create_checkout_session():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
+    print("webook triggered")
     event = None
     payload = request.data
     sig_header = request.headers['STRIPE_SIGNATURE']
