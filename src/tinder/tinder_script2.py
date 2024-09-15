@@ -7,11 +7,23 @@ import tensorflow as tf
 import numpy as np
 from google.cloud import storage
 import sys
+from dotenv import load_dotenv  # Import dotenv to load environment variables
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Set the auth token and URL
 nearby_profiles_url = 'https://api.gotinder.com/v2/recs/core?locale=en'
 like_url = 'https://api.gotinder.com/like/{}?locale=en'
 pass_url = 'https://api.gotinder.com/pass/{}?locale=en&s_number={}'
+
+# Path to your service account key
+SERVICE_ACCOUNT_KEY = os.getenv('SERVICE_ACCOUNT_KEY')
+
+# Set the environment variable to tell Google Cloud where to find the credentials
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_KEY
+
+# Google Cloud settings
 BUCKET_NAME = 'swipemate-bucket'
 MODEL_PATH = 'retrain2pt2.keras'
 
@@ -28,7 +40,7 @@ os.makedirs(unattractive_dir, exist_ok=True)
 
 # Function to download the model from GCS
 def download_model_from_gcs(bucket_name, model_path, local_path):
-    client = storage.Client()
+    client = storage.Client()  # This will use the GOOGLE_APPLICATION_CREDENTIALS env var
     bucket = client.bucket(bucket_name)
     blob = bucket.blob(model_path)
     try:
@@ -39,14 +51,31 @@ def download_model_from_gcs(bucket_name, model_path, local_path):
         exit(1)
 
 # Function to load and preprocess a single image from a URL
+import os
+import requests
+import hashlib
+import tensorflow as tf
+import numpy as np
+
 def load_and_preprocess_image(image_url):
+    print("image url is {0}".format(image_url))
     response = requests.get(image_url)
     if response.status_code == 200:
+        # Get the directory of the current script
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # Create a 'temp' directory in the same location as the script
+        temp_dir = os.path.join(script_dir, "temp")
+        os.makedirs(temp_dir, exist_ok=True)
+
         # Create a unique file name using a hash function
         hash_object = hashlib.md5(image_url.encode())
-        img_path = os.path.join("/tmp", hash_object.hexdigest() + ".jpg")
+        print("hash object =", hash_object.hexdigest())
+        img_path = os.path.join(temp_dir, hash_object.hexdigest() + ".jpg")
+        
         with open(img_path, 'wb') as img_file:
             img_file.write(response.content)
+            
         img = tf.keras.preprocessing.image.load_img(img_path, target_size=(299, 299))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = np.expand_dims(img, axis=0)
@@ -56,22 +85,9 @@ def load_and_preprocess_image(image_url):
         print(f"Failed to download image: {image_url}")
         return None, None
 
-# Function to get profiles with rate limiting
-def get_profiles_with_rate_limiting(url, headers, rate_limit_seconds=random.uniform(3, 5)):
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        return response.json()
-    elif response.status_code == 429:  # Too many requests
-        print("Rate limit exceeded. Waiting...")
-        time.sleep(rate_limit_seconds)
-        return get_profiles_with_rate_limiting(url, headers, rate_limit_seconds)
-    else:
-        print(f"Failed to fetch profiles: {response.status_code}")
-        return None
 
 def main(auth_token):
     # Set the headers for the request
-    print(f"this is the auth token: {auth_token}")
     headers = {
         'X-Auth-Token': auth_token,
         'Content-Type': 'application/json'
@@ -170,7 +186,6 @@ def main(auth_token):
                     attractive_profile = False
                     for photo_url in photo_urls:
                         file.write(f"Photo URL: {photo_url}\n")
-                        # print(f"Processing image: {photo_url}")  # Debug info
                         img, img_path = load_and_preprocess_image(photo_url)
                         if img is not None:
                             try:
@@ -178,13 +193,12 @@ def main(auth_token):
                                 confidence = prediction[0][0]
                                 label = 'attractive' if confidence > 0.7 else 'unattractive'
                                 file.write(f"Photo is {label} with confidence {confidence}\n")
-                                # print(f"Photo is {label} with confidence {confidence}")  # Debug info
                                 if confidence > 0.7:
                                     attractive_profile = True
                                     save_path = os.path.join(attractive_dir, f"1_TI_{image_counter}.jpg")
                                 else:
                                     save_path = os.path.join(unattractive_dir, f"0_TI_{image_counter}.jpg")
-                                print(f"Saving image to: {save_path}")  # Debug info
+                                print(f"Saving image to: {save_path}")
                                 os.rename(img_path, save_path)
                                 image_counter += 1
                             except Exception as e:

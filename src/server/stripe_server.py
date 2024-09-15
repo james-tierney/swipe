@@ -82,7 +82,7 @@ def webhook():
 
             # Run Tinder script with the constructed relative path and auth token
             print('Payment was successful! Now we can run the Tinder scripts')
-            subprocess.run(["python3", tinder_script_path, auth_token])
+            subprocess.run(["C:\\Program Files\\Python310\\python.exe", tinder_script_path, auth_token])
         else:
             print("No Auth Token")
         
@@ -93,4 +93,4 @@ def webhook():
     return jsonify(success=True)
 
 if __name__ == '__main__':
-    app.run(port=3002)
+    app.run(port=3002, host='0.0.0.0')
