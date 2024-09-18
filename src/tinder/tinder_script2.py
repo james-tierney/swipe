@@ -13,6 +13,7 @@ from dotenv import load_dotenv  # Import dotenv to load environment variables
 load_dotenv()
 
 
+
 # Set the auth token and URL
 nearby_profiles_url = 'https://api.gotinder.com/v2/recs/core?locale=en'
 like_url = 'https://api.gotinder.com/like/{}?locale=en'
