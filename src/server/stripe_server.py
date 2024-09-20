@@ -3,12 +3,20 @@ from flask import Flask, request, jsonify
 import stripe
 import subprocess  # Add this import
 import json
+from dotenv import load_dotenv  # Import load_dotenv
 
 app = Flask(__name__)
+dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+load_dotenv(dotenv_path)
+print(dotenv_path)
+print(os.getenv('STRIPE_API_KEY'))
+print(os.getenv('WEBHOOK_SECRET'))
 
 # Set your secret key. Remember to replace this with your actual secret key.
-stripe.api_key = "sk_test_51PkAarGzjfg0H4MPKAxe6PdEhy50yHOHxzq5MZfWShUTgalSlxslBBdOkbly8rJkoLfiFFDfRiLew558BngVDhSG003LNIE1BR"
-webhook_endpoint_secret = 'whsec_PNlmJOTPrG7gbIfrStvZ5clmcIaGTcfp'
+stripe.api_key = os.getenv('STRIPE_API_KEY')
+print(f"Loaded Stripe API Key: {stripe.api_key}")  # Debugging line
+webhook_endpoint_secret = os.getenv('WEBHOOK_SECRET')
+print(f"Loaded Webhook Secret: {webhook_endpoint_secret}")  # Debugging line
 
 # Determine the base directory of the script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -25,16 +33,16 @@ def create_checkout_session():
             line_items=[
                 {
                     'price_data': {
-                        'currency': 'gbp',
+                        'currency': 'usd',
                         'product_data': {
-                            'name': 'test',
+                            'name': 'SwipeMateAI',
                         },
-                        'unit_amount': 100,  # Amount in cents
+                        'unit_amount': 2000,  # Amount in cents
                     },
                     'quantity': 1,
                 },
             ],
-            #automatic_tax={'enabled': True},
+            automatic_tax={'enabled': True},
             mode='payment',
             client_reference_id=auth_token,  # Set the auth token here
             success_url=f'http://localhost:3000/checkout-success?authToken={auth_token}',
@@ -82,7 +90,11 @@ def webhook():
 
             # Run Tinder script with the constructed relative path and auth token
             print('Payment was successful! Now we can run the Tinder scripts')
+            subprocess.run(["python3", tinder_script_path, auth_token])
+            '''
+            print('Payment was successful! Now we can run the Tinder scripts')
             subprocess.run(["C:\\Program Files\\Python310\\python.exe", tinder_script_path, auth_token])
+            '''
         else:
             print("No Auth Token")
         
