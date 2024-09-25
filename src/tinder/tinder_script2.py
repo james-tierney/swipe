@@ -126,19 +126,25 @@ def main(auth_token):
 
     # Function to like a profile
     def like_profile(user_id):
-        response = requests.get(like_url.format(user_id), headers=headers)
-        if response.status_code == 200:
-            print(f"Successfully liked user {user_id}")
-        else:
-            print(f"Failed to like user {user_id}: {response.status_code}")
+        try:
+            response = requests.get(like_url.format(user_id), headers=headers)
+            if response.status_code == 200:
+                print(f"Successfully liked user {user_id}")
+            else:
+                print(f"Failed to like user {user_id}: {response.status_code}")
+        except:
+            return
 
     # Function to pass on a profile
     def pass_profile(user_id, s_number):
-        response = requests.get(pass_url.format(user_id, s_number), headers=headers)
-        if response.status_code == 200:
-            print(f"Successfully passed on user {user_id}")
-        else:
-            print(f"Failed to pass on user {user_id}: {response.status_code}")
+        try:
+            response = requests.get(pass_url.format(user_id, s_number), headers=headers)
+            if response.status_code == 200:
+                print(f"Successfully passed on user {user_id}")
+            else:
+                print(f"Failed to pass on user {user_id}: {response.status_code}")
+        except:
+            return
 
 
     total_users = 0
