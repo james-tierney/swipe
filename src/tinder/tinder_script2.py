@@ -214,13 +214,13 @@ def main(auth_token):
                         print(f"{user_id} is attractive")
                         if right_swipes < 500:
                             print(f"We are liking {user_id}")
-                            # like_profile(user_id)
+                            like_profile(user_id)
 
                     else:
                         time.sleep(random.uniform(3, 5))
                         print(f"{user_id} is unattractive")
                         print(f"we are disliking {user_id}")
-                        # pass_profile(user_id, s_number)
+                        pass_profile(user_id, s_number)
                 
                 # Pause for a random duration between 3 to 5 seconds
                 time.sleep(random.uniform(3, 5))
