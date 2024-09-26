@@ -89,7 +89,7 @@ const LandingPage = () => {
         <Grid container spacing={3} style={{ marginTop: '40px', marginBottom: '40px' }}>
           <Grid item xs={12}>
             <Typography variant="h4" component="h4" sx={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: '2rem', fontFamily: 'Bebas Neue' }}>
-              Paste your auth token and pay $100 for 500 free swipes!
+              Paste your auth token and pay $20 for 500 free swipes!
             </Typography>
           </Grid>
 
