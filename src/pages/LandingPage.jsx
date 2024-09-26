@@ -16,6 +16,7 @@ const LandingPage = () => {
     // Call your backend to create the Checkout session
     let response;
     try {
+      console.log("The auth token: ", authToken)
       response = await fetch('/create-checkout-session', {
         method: 'POST',
         headers: {
