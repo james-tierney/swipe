@@ -24,7 +24,7 @@ const LandingPage = () => {
         body: JSON.stringify({ authToken }),  // Include auth token in the request
       });
     } catch (error) {
-      console.log("Error in creating checkout session: ", error.json())
+      console.log("Error in creating checkout session: ", error)
     }
 
     console.log("response: ", response)
@@ -33,7 +33,7 @@ const LandingPage = () => {
     try {
       const session = await response.json();
     } catch (error) {
-      console.log("Error in retrieving session data ", error.json())
+      console.log("Error in retrieving session data ", error)
     }
 
     console.log("session: ", session);
@@ -45,7 +45,7 @@ const LandingPage = () => {
         sessionId: session.id,
       });
     } catch (error) {
-      console.log("Error in redirecting to checkout: ", error.json())
+      console.log("Error in redirecting to checkout: ", error)
     }
   };
 
