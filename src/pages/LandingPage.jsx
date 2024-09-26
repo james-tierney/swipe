@@ -5,7 +5,7 @@ import Screenshot1 from '../assets/images/screenshot1.png';
 import Screenshot2 from '../assets/images/screenshot2.png';
 
 // Load your publishable key from Stripe
-const stripePromise = loadStripe('pk_test_51MIxt5KhH8zNT0eBsdPFdzJKWvmFTUizm2dPrq2daAtaa8to4ODsN6sh1jqOjg2Qf5p4Q3UJcOaTybTcRk2x4hFO00gaUmgcqo');
+const stripePromise = loadStripe('pk_live_51MIxt5KhH8zNT0eBV69mSH0djmZ50vIKUR71fICATT4g1qC6K6psICHaEePSIfQQqRUvHCRajt5HrQSCLoQzq8Bj00hiQS4fwh');
 
 const LandingPage = () => {
   const [authToken, setAuthToken] = useState('');
