@@ -4,8 +4,10 @@ import stripe
 import subprocess  # Add this import
 import json
 from dotenv import load_dotenv  # Import load_dotenv
+from flask_cors import CORS 
 
 app = Flask(__name__)
+CORS(app)
 
 load_dotenv()
 print()
