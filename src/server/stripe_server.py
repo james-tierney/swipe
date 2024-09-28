@@ -28,6 +28,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
+    print("Creating checkout session loading data ", data)
     data = json.loads(request.data)
     auth_token = data.get('authToken')
 
