@@ -22,5 +22,4 @@ google-crc32c==1.5.0
 google-resumable-media==2.7.1
 googleapis-common-protos==1.63.2
 gpxpy==1.6.2
-base64
 stripe==10.9.0
