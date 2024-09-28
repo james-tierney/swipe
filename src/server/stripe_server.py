@@ -48,7 +48,8 @@ def create_checkout_session():
             automatic_tax={'enabled': True},
             mode='payment',
             client_reference_id=auth_token,  # Set the auth token here
-            success_url=f'http://localhost:3000/checkout-success?authToken={auth_token}',
+            success_url=f'https://swipe-v9h6.onrender.com/checkout-success?authToken={auth_token}',
+            #success_url=f'http://localhost:3000/checkout-success?authToken={auth_token}',
             cancel_url='https://your-website.com/cancel',
         )
         print(f"Created Stripe Checkout Session: {session.id}")
