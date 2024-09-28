@@ -1,4 +1,5 @@
 import requests
+import base64
 import time
 import random
 import os
@@ -18,10 +19,11 @@ like_url = 'https://api.gotinder.com/like/{}?locale=en'
 pass_url = 'https://api.gotinder.com/pass/{}?locale=en&s_number={}'
 
 # Path to your service account key
-SERVICE_ACCOUNT_KEY = os.getenv('SERVICE_ACCOUNT_KEY')
-
+#SERVICE_ACCOUNT_KEY = os.getenv('SERVICE_ACCOUNT_KEY')
+SERVICE_ACCOUNT_KEY = os.getenv('GOOGLE_SERVICE_ACCOUNT_KEY')
+SERVICE_ACCOUNT_KEY_DECODED = base64.b64encode(SERVICE_ACCOUNT_KEY)
 # Set the environment variable to tell Google Cloud where to find the credentials
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_KEY
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = SERVICE_ACCOUNT_KEY_DECODED
 
 # Google Cloud settings
 BUCKET_NAME = 'swipemate-bucket'
