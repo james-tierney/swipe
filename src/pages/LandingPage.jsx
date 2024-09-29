@@ -17,7 +17,8 @@ const LandingPage = () => {
     let response;
     try {
       console.log("The auth token: ", authToken)
-      response = await fetch('https://swipe-v9h6.onrender.com/create-checkout-session', {
+      //response = await fetch('https://swipe-v9h6.onrender.com/create-checkout-session', {
+        response = await fetch('/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
